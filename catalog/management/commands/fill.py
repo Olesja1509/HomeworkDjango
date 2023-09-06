@@ -10,11 +10,11 @@ class Command(BaseCommand):
         categories.delete()
 
         category_list = [
-            {'pk': '1', 'title': 'TV', 'body': ''},
-            {'pk': '2', 'title': 'Smartphon', 'body': ''},
-            {'pk': '3', 'title': 'Laptop', 'body': ''},
-            {'pk': '4', 'title': 'keyboard', 'body': ''},
-            {'pk': '5', 'title': 'PC mouse', 'body': ''}
+            {'pk': '1', 'title': 'Рассылки', 'body': ''},
+            {'pk': '2', 'title': 'Телеграм боты', 'body': ''},
+            {'pk': '3', 'title': 'Полезные утилиты', 'body': ''},
+            {'pk': '4', 'title': 'Веб-приложения', 'body': ''},
+            {'pk': '5', 'title': 'Микросервисы', 'body': ''}
         ]
 
         category_for_create = []
@@ -24,3 +24,6 @@ class Command(BaseCommand):
             )
 
         Category.objects.bulk_create(category_for_create)
+
+
+
