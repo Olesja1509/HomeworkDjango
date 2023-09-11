@@ -1,30 +1,18 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from catalog.models import Product
 
 
-def index(request):
-    products_list = Product.objects.all()
-    context = {
-        'object_list': products_list,
+class ProductListView(ListView):
+    model = Product
+    extra_context = {
         'title': 'Skystore'
     }
-    return render(request, 'catalog/index.html', context)
 
 
-def product(request, pk):
-    product_item = Product.objects.get(pk=pk)
-    context = {
-        'object_list': Product.objects.filter(id=pk),
-        'title': product_item.title,
-        'price': product_item.price,
-        'body': product_item.body,
-        'category': product_item.category,
-        'creation_date': product_item.creation_date,
-        'change_date': product_item.change_date,
-        'preview': product_item.preview
-    }
-    return render(request, 'catalog/product.html', context)
+class ProductDetailView(DetailView):
+    model = Product
 
 
 def contacts(request):
