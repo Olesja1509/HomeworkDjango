@@ -1,6 +1,12 @@
+from datetime import datetime
+
 from django.db import models
 
 NULLABLE = {'blank': True, 'null': True}
+
+
+def default_datetime():
+    return datetime.now()
 
 
 class Category(models.Model):
@@ -21,8 +27,8 @@ class Product(models.Model):
     preview = models.ImageField(upload_to='products/', verbose_name='Изображение', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name='Категория')
     price = models.IntegerField(verbose_name='Цена за покупку')
-    creation_date = models.DateTimeField(verbose_name='Дата создания')
-    change_date = models.DateTimeField(verbose_name='Дата последнего изменения')
+    creation_date = models.DateTimeField(verbose_name='Дата создания', default=default_datetime)
+    change_date = models.DateTimeField(verbose_name='Дата последнего изменения', default=default_datetime)
 
     def __str__(self):
         return f'{self.title}'
@@ -30,3 +36,17 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
+    version_number = models.IntegerField(verbose_name='Номер версии')
+    title = models.CharField(max_length=100, verbose_name='Название версии')
+    feature = models.BooleanField(verbose_name='Признак текущей версии', default=False)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'

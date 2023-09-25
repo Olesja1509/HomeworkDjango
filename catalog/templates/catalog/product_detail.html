@@ -29,9 +29,18 @@
                             <td class="w-25">Дата последнего изменения</td>
                             <td> {{ object.change_date }} </td>
                         </tr>
+                        <tr>
+                            <td class="w-25">Версия продукта</td>
+                            <td>
+                                {{ object.version_number }}
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="col-12 mb-4">
+            <a class="btn btn-outline-primary" href="{% url 'catalog:update_product' object.pk %}">Редактировать продукт</a>
         </div>
 
     </div>
