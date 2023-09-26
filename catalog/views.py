@@ -17,6 +17,12 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = context['object'].pk
+        context['version'] = Version.objects.filter(feature=True, product=pk)
+        return context
+
 
 def contacts(request):
     if request.method == 'POST':
@@ -63,7 +69,3 @@ class ProductUpdateView(UpdateView):
             formset.save()
 
         return super().form_valid(form)
-
-
-class VersionListView(ListView):
-    model = Version

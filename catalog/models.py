@@ -45,7 +45,7 @@ class Version(models.Model):
     feature = models.BooleanField(verbose_name='Признак текущей версии', default=False)
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.version_number} ({self.title})'
 
     class Meta:
         verbose_name = 'версия'

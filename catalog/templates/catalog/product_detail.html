@@ -32,7 +32,9 @@
                         <tr>
                             <td class="w-25">Версия продукта</td>
                             <td>
-                                {{ object.version_number }}
+                                {% for v in version%}
+                                {{ v }}
+                                {% endfor %}
                             </td>
                         </tr>
                     </table>
