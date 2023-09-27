@@ -44,6 +44,9 @@
         <div class="col-12 mb-4">
             <a class="btn btn-outline-primary" href="{% url 'catalog:update_product' object.pk %}">Редактировать продукт</a>
         </div>
+        <div class="col-12 mb-4">
+            <a class="btn btn-outline-primary" href="{% url 'catalog:delete_product' object.pk %}">Удалить продукт</a>
+        </div>
 
     </div>
 </div>

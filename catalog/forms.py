@@ -3,6 +3,10 @@ from django import forms
 from catalog.models import Product, Version
 
 
+forbidden_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман',
+                           'полиция', 'радар']
+
+
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,8 +20,6 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         exclude = ('creation_date', 'change_date')
 
     def clean_title(self):
-        forbidden_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман',
-                           'полиция', 'радар']
         cleaned_data = self.cleaned_data.get('title')
 
         for word in forbidden_words:
