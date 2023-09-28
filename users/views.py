@@ -20,7 +20,8 @@ class RegisterView(CreateView):
         new_user = form.save()
         send_mail(
             subject='Поздравляем с регистрацией',
-            message='Вы загеристрировались на нашей платформе, добро пожаловать!',
+            message='Вы загеристрировались на нашей платформе, добро пожаловать!\n'
+                    ' http://127.0.0.1:8000/users/',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[new_user.email]
         )
