@@ -2,7 +2,9 @@
 
 {% block content %}
 <div class="col-12 mb-5">
+    {% if perms.blog.add_article%}
     <a class="btn btn-outline-primary" href="{% url 'blog:create'%}">Добавить статью</a>
+    {% endif %}
 </div>
 
 <div class="container">
@@ -17,8 +19,12 @@
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">{{object.body|slice:100}}</ul>
                     <div class="btn-group">
                     <a class="p-2 btn btn-outline-primary" href="{% url 'blog:view' object.pk %}">Read</a>
+                        {% if perms.blog.change_article%}
                     <a class="p-2 btn btn-outline-primary" href="{% url 'blog:edit' object.pk %}">Edit</a>
+                        {% endif %}
+                        {% if perms.blog.delete_article%}
                     <a class="p-2 btn btn-outline-primary" href="{% url 'blog:delete' object.pk %}">Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

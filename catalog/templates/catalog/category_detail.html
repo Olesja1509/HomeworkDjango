@@ -1,20 +1,9 @@
 {% extends 'catalog/base.html' %}
-
+{% load my_tags%}
 {% block content %}
-<p class="lead">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы
-        хотели продать</p>
-
-{% if request.user.is_authenticated %}
-<div class="col-12 mb-4">
-    {% if perms.catalog.add_product%}
-    <a class="btn btn-outline-primary" href="{% url 'catalog:create_product'%}">Добавить продукт</a>
-    {% endif %}
-</div>
-{% endif %}
-
 <div class="container">
     <div class="row text-center">
-        {% for object in object_list %}
+        {% for object in products %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
