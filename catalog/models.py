@@ -30,6 +30,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Цена за покупку')
     creation_date = models.DateTimeField(verbose_name='Дата создания', default=default_datetime)
     change_date = models.DateTimeField(verbose_name='Дата последнего изменения', default=default_datetime)
+    is_active = models.BooleanField(verbose_name='Признак публикации продукта', default=False)
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='Пользователь', **NULLABLE)
 
